@@ -1,0 +1,86 @@
+:root{
+    --pink:#f7d7e0;
+    --w:min(80vw,340px,calc((100svh - 170px) / 1.42));
+    --h:calc(var(--w) * 1.42);
+    --ink:#424141;
+    --coral:#ffc0cb;
+    --teal:#e2725b;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;margin:0;overflow:hidden;background:var(--pink)}
+  body{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+    font-family:'Patrick Hand','Comic Sans MS',cursive;
+    user-select:none;-webkit-user-select:none;touch-action:pan-y;
+  }
+
+  /* ===== BUKU ===== */
+  .book{
+    position:relative;width:var(--w);height:var(--h);
+    perspective:1800px;perspective-origin:25% 50%;
+  }
+  .leaf{
+    position:absolute;inset:0;
+    transform-origin:left center;transform-style:preserve-3d;
+    transition:transform .9s cubic-bezier(.45,.05,.25,1);
+  }
+  .leaf.flipped{transform:rotateY(-180deg)}
+  .face{
+    position:absolute;inset:0;overflow:hidden;
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    background:#fffefc;border-radius:2px 6px 6px 2px;
+    box-shadow:6px 16px 38px rgba(150,60,40,.28);
+  }
+  .face.back{
+    transform:rotateY(180deg);
+    background:linear-gradient(90deg,#b4b4b4,#d6d6d6);
+    box-shadow:none;
+  }
+
+  /* ===== SAMPUL ===== */
+  .cover{
+    display:flex;flex-direction:column;align-items:center;
+    box-shadow:inset -5px 0 0 #b9cdd2,6px 16px 38px rgba(150,60,40,.28);
+  }
+  .cover .hb{
+    margin-top:20%;
+    font:600 calc(var(--w) * .043)/1 system-ui,sans-serif;
+    letter-spacing:.24em;color:#c0476f;padding-left:.24em;
+  }
+  .cover .art{height:66%;width:auto;margin-top:5%;object-fit:contain}
+
+  /* ===== HALAMAN ISI ===== */
+  .page{
+    height:100%;padding:12% 11% 9%;
+    display:flex;flex-direction:column;
+    color:var(--ink);font-size:calc(var(--w) * .037);line-height:1.5;text-align:left;
+  }
+  .page p{margin:0 0 .7em}
+  .page .no{
+    margin-top:auto;align-self:center;
+    font-size:calc(var(--w) * .045);color:#b8a9b3;
+  }
+  .title{
+    font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;
+    font-size:calc(var(--w) * .15);line-height:.95;letter-spacing:.01em;
+    margin:8% 0 10%;text-align:center;color:var(--coral);
+  }
+  .title b{display:block;color:var(--teal);font-weight:400}
+  .page.center{text-align:center}
+  .sig{margin-top:.4em;text-align:right;line-height:1.25}
+  .mini{height:calc(var(--w) * .3);width:auto;align-self:center;margin:0 0 2%;object-fit:contain}
+
+  /* ===== KONTROL ===== */
+  .nav{display:flex;align-items:center;gap:20px;height:46px}
+  .nav button{
+    width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:#c4563f;
+    font-size:22px;line-height:1;cursor:pointer;box-shadow:0 4px 12px rgba(150,60,40,.28);
+    transition:opacity .2s,transform .15s;
+  }
+  .nav button:active{transform:scale(.92)}
+  .nav button:disabled{opacity:.35}
+  .nav span{min-width:64px;text-align:center;color:#fff;font-size:20px;text-shadow:0 1px 6px rgba(150,60,40,.45)}
+
+  @media (prefers-reduced-motion:reduce){
+    .leaf{transition-duration:.01s}
+  }
